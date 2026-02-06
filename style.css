@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden; /* ZERO scrolli */
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: x-large;
+  font-weight: 600;
+}
+
+main {
+  width: 60%;
+  height: 600px;
+  padding: 40px;
+  background-color: rgb(238, 238, 238);
+  border-radius: 30px;
+  box-shadow: 2px 2px 10px rgb(219, 219, 219);
+}
+
+.info {
+  width: 100%;
+  height: 60%;
+}
+
+.buttons-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40%;
+}
+
+.yes {
+  position: absolute;
+  top: 45px;
+  left: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 60px;
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(300deg, #ffb5b5, #ff6da3, #ff1b35);
+  background-size: 180% 180%;
+  animation: gradient-animation 3s ease infinite;
+  border-radius: 30px;
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+  transition: 0.5s;
+}
+
+.yes:hover {
+  transform: scale(115%);
+  box-shadow: 6px 6px 6px rgb(150, 150, 150);
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.no-container {
+  position: absolute;
+  top: 0px;
+  right: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 150px;
+
+  transform: translate(0px, 0px);
+  transition: transform 0.15s linear;
+  /* transition:
+    right 0.4s ease,
+    top 0.4s ease; */
+}
+
+.no {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 60px;
+  margin: 0;
+  color: black;
+  background-color: rgb(250, 250, 250);
+  text-decoration: none;
+  border-radius: 30px;
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+}

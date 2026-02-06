@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Vday</title>
+  </head>
+  <body>
+    <main>
+      <div class="info">
+        <p>Blebleble</p>
+      </div>
+      <div class="buttons-container">
+        <div class="yes">Tak</div>
+        <div id="no-container" class="no-container">
+          <p class="no">Nie</p>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const noButton = document.getElementById("no-container");
+
+      // startowa pozycja = 0,0 względem transform
+      let posX = 0;
+      let posY = 0;
+
+      // ustaw początkowo (nie zmienia miejsca elementu w DOM)
+      noButton.style.transform = `translate(${posX}px, ${posY}px)`;
+
+      document.addEventListener("mousemove", (e) => {
+        const rect = noButton.getBoundingClientRect();
+
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const dx = e.clientX - centerX;
+        const dy = e.clientY - centerY;
+
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 140) {
+          posX -= dx * 0.25;
+          posY -= dy * 0.25;
+
+          noButton.style.transform = `translate(${posX}px, ${posY}px)`;
+        }
+      });
+
+      // let i = 0;
+      // let noButton = document.getElementById("no-container");
+      // noButton.addEventListener("mouseover", () => {
+      //   switch (i) {
+      //     case 0:
+      //       noButton.style.right = "-100px";
+      //       noButton.style.top = "80px";
+      //       break;
+      //     case 1:
+      //       noButton.style.right = "10px";
+      //       noButton.style.top = "-200px";
+      //       break;
+      //     case 2:
+      //       noButton.style.right = "-160px";
+      //       noButton.style.top = "-40px";
+      //       break;
+      //     case 3:
+      //       noButton.style.right = "400px";
+      //       noButton.style.top = "80px";
+      //       break;
+      //     case 4:
+      //       noButton.style.right = "600px";
+      //       noButton.style.top = "-200px";
+      //       break;
+      //     case 5:
+      //       noButton.style.right = "300px";
+      //       noButton.style.top = "-450px";
+      //       break;
+      //     case 6:
+      //       noButton.style.right = "-5000px";
+      //       noButton.style.top = "0px";
+      //       break;
+      //   }
+
+      //   i++;
+      // });
+    </script>
+  </body>
+</html>
