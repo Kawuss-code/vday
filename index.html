@@ -4,35 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Vday</title>
   </head>
   <body>
     <main>
-      <div class="info">
-        <p>Blebleble</p>
+      <div id="info" class="info">
+        <img class="jamnik" src="jamnik.png" alt="jamnik" />
+        <p class="question">Zostaniesz moją walentynką?</p>
       </div>
       <div id="buttons-container" class="buttons-container">
-        <div id="yes" class="yes">Tak</div>
+        <div id="yes" class="yes button">Tak</div>
         <div id="no-container" class="no-container">
-          <p class="no">Nie</p>
+          <p id="no" class="no button">Nie</p>
         </div>
       </div>
     </main>
 
     <script>
-      const noButton = document.getElementById("no-container");
-      const yesTimeout = setTimeout(biggerYes, 2000);
+      const noArea = document.getElementById("no-container");
+      const noButton = document.getElementById("no");
+      const yesTimeout = setTimeout(biggerYes, 1500);
       const yes = document.getElementById("yes");
       const buttonsContainer = document.getElementById("buttons-container");
+      const info = document.getElementById("info");
       // hover over no button
 
       let posX = 0;
       let posY = 0;
 
-      noButton.style.transform = `translate(${posX}px, ${posY}px)`;
+      noArea.style.transform = `translate(${posX}px, ${posY}px)`;
 
       document.addEventListener("mousemove", (e) => {
-        const rect = noButton.getBoundingClientRect();
+        const rect = noArea.getBoundingClientRect();
 
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
@@ -43,10 +54,10 @@
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < 140) {
-          posX -= dx * 0.1;
-          posY -= dy * 0.1;
+          posX -= dx * 0.15;
+          posY -= dy * 0.15;
 
-          noButton.style.transform = `translate(${posX}px, ${posY}px)`;
+          noArea.style.transform = `translate(${posX}px, ${posY}px)`;
         }
       });
 
@@ -59,42 +70,70 @@
       // showing gif or whatever
 
       yes.addEventListener("click", () => {
-        buttonsContainer.innerHTML = "<img src='smile.gif' alt='Smile'>";
+        info.innerHTML = "Yay!";
+        info.style.marginTop = "25%";
+        info.style.marginBottom = "5px";
+
+        buttonsContainer.innerHTML = `
+    <img id="gif" class="fade-in" src="mindblow.gif" alt="Smile" style="height:90%">
+  `;
+
+        const gif = document.getElementById("gif");
+
+        // mały delay, żeby przeglądarka zdążyła wyrenderować stan początkowy
+        requestAnimationFrame(() => {
+          gif.classList.add("show");
+        });
       });
 
+      noButton.addEventListener("click", () => {
+        info.innerHTML = "Plz no";
+        info.style.marginTop = "25%";
+        info.style.marginBottom = "5px";
 
+        buttonsContainer.innerHTML = `
+    <img id="gif" class="fade-in" src="bro.gif" alt="Smile" style="height:90%">
+  `;
+
+        const gif = document.getElementById("gif");
+
+        // mały delay, żeby przeglądarka zdążyła wyrenderować stan początkowy
+        requestAnimationFrame(() => {
+          gif.classList.add("show");
+        });
+      });
 
       // let i = 0;
-      // let noButton = document.getElementById("no-container");
-      // noButton.addEventListener("mouseover", () => {
+      // let noArea = document.getElementById("no-container");
+      // noArea.addEventListener("mouseover", () => {
       //   switch (i) {
       //     case 0:
-      //       noButton.style.right = "-100px";
-      //       noButton.style.top = "80px";
+      //       noArea.style.right = "-100px";
+      //       noArea.style.top = "80px";
       //       break;
       //     case 1:
-      //       noButton.style.right = "10px";
-      //       noButton.style.top = "-200px";
+      //       noArea.style.right = "10px";
+      //       noArea.style.top = "-200px";
       //       break;
       //     case 2:
-      //       noButton.style.right = "-160px";
-      //       noButton.style.top = "-40px";
+      //       noArea.style.right = "-160px";
+      //       noArea.style.top = "-40px";
       //       break;
       //     case 3:
-      //       noButton.style.right = "400px";
-      //       noButton.style.top = "80px";
+      //       noArea.style.right = "400px";
+      //       noArea.style.top = "80px";
       //       break;
       //     case 4:
-      //       noButton.style.right = "600px";
-      //       noButton.style.top = "-200px";
+      //       noArea.style.right = "600px";
+      //       noArea.style.top = "-200px";
       //       break;
       //     case 5:
-      //       noButton.style.right = "300px";
-      //       noButton.style.top = "-450px";
+      //       noArea.style.right = "300px";
+      //       noArea.style.top = "-450px";
       //       break;
       //     case 6:
-      //       noButton.style.right = "-5000px";
-      //       noButton.style.top = "0px";
+      //       noArea.style.right = "-5000px";
+      //       noArea.style.top = "0px";
       //       break;
       //   }
 

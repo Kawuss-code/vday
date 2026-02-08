@@ -13,10 +13,32 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffecec;
+  overflow: hidden;
+  position: relative;
+
+  font-family: "Playwrite NZ Basic", cursive;
   font-size: x-large;
-  font-weight: 600;
-  background-color: rgb(255, 251, 245);
+  font-weight: 400;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+
+  /* robimy warstwę dużo większą niż viewport */
+  width: 200vw;
+  height: 200vh;
+  left: -50vw;
+  top: -50vh;
+
+  background-image: url(heart.png);
+  background-size: 50px;
+  opacity: 0.15;
+
+  transform: rotate(-4deg);
+  z-index: -1;
+  pointer-events: none;
 }
 
 main {
@@ -28,30 +50,46 @@ main {
   /* background-color: rgb(253, 252, 248);
   border-radius: 30px;
   box-shadow: 2px 2px 10px rgb(219, 219, 219); */
-  background-image: url(paper.png);
+  background-image: url(vpaper3.png);
   background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .info {
   width: 100%;
-  height: 50%;
   text-align: center;
+  margin-top: 30%;
+  font-size: larger;
+  transform: rotate(-4deg);
+}
+
+.jamnik {
+  height: 100px;
+}
+
+.question {
+  margin: 5px 0px;
 }
 
 .buttons-container {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
   height: 50%;
+  font-weight: 600;
+  transform: rotate(-4deg);
+}
+
+.button {
+  cursor: pointer;
 }
 
 .yes {
   position: absolute;
   top: 45px;
   /* left: 150px; */
-  margin-right: 40%;
+  margin-right: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,16 +97,16 @@ main {
   height: 60px;
   color: white;
   text-decoration: none;
-  background: linear-gradient(300deg, #ffb5b5, #ff6da3, #ff1b35);
+  background: linear-gradient(300deg, #ff0000, #c03642, #ff1934);
   background-size: 180% 180%;
   animation: gradient-animation 3s ease infinite;
   border-radius: 30px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+  box-shadow: 4px 4px 4px rgb(100, 100, 100);
   transition: 0.5s;
 }
 
 .yes:hover {
-  box-shadow: 6px 6px 6px rgb(150, 150, 150);
+  box-shadow: 8px 8px 8px rgb(100, 100, 100);
 }
 
 @keyframes gradient-animation {
@@ -112,5 +150,18 @@ main {
   background-color: rgb(250, 250, 250);
   text-decoration: none;
   border-radius: 30px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+  box-shadow: 4px 4px 6px rgb(100, 100, 100);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: scale(1);
 }
