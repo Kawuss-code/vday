@@ -11,8 +11,8 @@
       <div class="info">
         <p>Blebleble</p>
       </div>
-      <div class="buttons-container">
-        <div class="yes">Tak</div>
+      <div id="buttons-container" class="buttons-container">
+        <div id="yes" class="yes">Tak</div>
         <div id="no-container" class="no-container">
           <p class="no">Nie</p>
         </div>
@@ -21,12 +21,14 @@
 
     <script>
       const noButton = document.getElementById("no-container");
+      const yesTimeout = setTimeout(biggerYes, 2000);
+      const yes = document.getElementById("yes");
+      const buttonsContainer = document.getElementById("buttons-container");
+      // hover over no button
 
-      // startowa pozycja = 0,0 względem transform
       let posX = 0;
       let posY = 0;
 
-      // ustaw początkowo (nie zmienia miejsca elementu w DOM)
       noButton.style.transform = `translate(${posX}px, ${posY}px)`;
 
       document.addEventListener("mousemove", (e) => {
@@ -41,12 +43,26 @@
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < 140) {
-          posX -= dx * 0.25;
-          posY -= dy * 0.25;
+          posX -= dx * 0.1;
+          posY -= dy * 0.1;
 
           noButton.style.transform = `translate(${posX}px, ${posY}px)`;
         }
       });
+
+      // timeout for yes button
+
+      function biggerYes() {
+        yes.style.transform = "scale(160%)";
+      }
+
+      // showing gif or whatever
+
+      yes.addEventListener("click", () => {
+        buttonsContainer.innerHTML = "<img src='smile.gif' alt='Smile'>";
+      });
+
+
 
       // let i = 0;
       // let noButton = document.getElementById("no-container");
